@@ -3,6 +3,7 @@ package dockercompose.reservations.services;
 import dockercompose.reservations.entities.Reservation;
 import dockercompose.reservations.repositories.ReservationRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class ReservationsServicesImpl implements ReservationsServices{
     @Autowired
     private ReservationRepository reservationRepository;
