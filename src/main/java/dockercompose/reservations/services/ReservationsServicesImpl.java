@@ -16,6 +16,12 @@ import java.util.Optional;
 public class ReservationsServicesImpl implements ReservationsServices{
     @Autowired
     private ReservationRepository reservationRepository;
+
+
+    @Override
+    public Reservation createReservation(Reservation reservation){
+        return reservationRepository.save(reservation);
+    }
     @Override
     public List<Reservation> getAllReservations(){
         return  reservationRepository.findAll();
@@ -27,5 +33,18 @@ public class ReservationsServicesImpl implements ReservationsServices{
     @Override
     public void deleteReservation(Long id){
         reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Reservation updateReservation(Long id, Reservation reservationDetails) {
+        Optional<Reservation> reservationFound=reservationRepository.findById(id);
+        if(reservationFound.isPresent()){
+            Reservation reservationExisting=reservationFound.get();
+            reservationExisting.setPrice(reservationDetails.getPrice());
+            reservationExisting.setTitle(reservationDetails.getTitle());
+            reservationExisting.setStatus(reservationDetails.getStatus());
+            return reservationRepository.save(reservationExisting);
+        }
+        return null;
     }
 }

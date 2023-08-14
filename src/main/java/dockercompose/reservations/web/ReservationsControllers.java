@@ -15,6 +15,8 @@ import java.util.Optional;
 public class ReservationsControllers {
     @Autowired
     private ReservationsServices reservationsServices;
+
+    /////////////// GETTING
     @GetMapping
     public List<Reservation> getAllReservations(){
         return reservationsServices.getAllReservations();
@@ -26,5 +28,19 @@ public class ReservationsControllers {
     @DeleteMapping("/{id}")
     public void deleteReservationByID(@PathVariable Long id){
          reservationsServices.deleteReservation(id);
+    }
+
+
+    /////////////// Post
+    @PostMapping()
+    public Reservation createReservation(@RequestBody Reservation reservation){
+        return reservationsServices.createReservation(reservation);
+    }
+
+
+    /////////////// Patch
+    @PutMapping("/{id}")
+    public Reservation updateReservation(@PathVariable Long id,@RequestBody Reservation reservation){
+        return reservationsServices.updateReservation(id,reservation);
     }
 }

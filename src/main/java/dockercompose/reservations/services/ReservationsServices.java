@@ -9,4 +9,6 @@ public interface ReservationsServices {
     public List<Reservation> getAllReservations();
     public Optional<Reservation> getReservationById(Long id);
     public void deleteReservation(Long id);
+    public Reservation updateReservation(Long id,Reservation reservationDetails);
+    public Reservation createReservation(Reservation reservation);
 }
